@@ -15,20 +15,21 @@ if len(sys.argv)>1:
 if len(sys.argv)>2:
     search = sys.argv[2]
 
-def findFile(path):
+
+
+def findFile(path,search):
 
     for x in os.listdir(path):
         p = os.path.join(path,x)
         if os.path.isdir(p):
-            findFile(p)
-        else:
-            if containKey(p,search) :
-                print(p)
+            findFile(p,search)
+        elif containKey(p,search) :
+            print(p)
 
-def containKey(p,key):
+def containKey(p,search):
     try:
         f = open(p, 'r')
-        if f.read().__contains__(key):
+        if f.read().__contains__(search):
             return True
     except Exception  as e:
         return False
@@ -36,5 +37,4 @@ def containKey(p,key):
         if f:
             f.close()
 
-
-findFile(path)
+findFile(path,search)
